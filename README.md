@@ -98,25 +98,25 @@ Sangat mudah bukan, untuk membuat user input yang <i>user friendly</i> saya meng
 |:---:|:---:|:---:|:---:|:---:|
 | 1 | Anibatch | `https://o.anibatch.me/` | anime | `lk21.extractors.anibatch.Anibatch` |
 | 2 | Anikyojin | `https://anikyojin.id` | anime | `lk21.extractors.anikyojin.Anikyojin` |
-| 3 | Animeindo | `https://animeindo.asia` | anime | `lk21.extractors.animeindo.Animeindo` |
+| 3 | Animeindo | `https://185.224.82.193` | anime | `lk21.extractors.animeindo.Animeindo` |
 | 4 | Anitoki | `https://anitoki.me` | anime | `lk21.extractors.anitoki.Anitoki` |
 | 5 | Bbcsjav | `https://bbcsjav.com` | JAV | `lk21.extractors.bbcsjav.Bbcsjav` |
 | 6 | Dramaindo | `https://163.172.111.222` | anime, movie | `lk21.extractors.dramaindo.Dramaindo` |
 | 7 | Drivenime | `https://drivenime.com` | anime | `lk21.extractors.drivenime.Drivenime` |
 | 8 | KDramaindo | `https://kdramaindo.live` | movie | `lk21.extractors.kdramaindo.KDramaindo` |
 | 9 | Kusonime | `https://kusonime.com` | anime | `lk21.extractors.kusonime.Kusonime` |
-| 10 | Layarkaca21 | `http://149.56.24.226/` | movie | `lk21.extractors.layarkaca21.Layarkaca21` |
+| 10 | Layarkaca21 | `https://lk21.xn--6frz82g/` | movie | `lk21.extractors.layarkaca21.Layarkaca21` |
 | 11 | Melongmovie | `https://melongmovie.net` | movie | `lk21.extractors.melongmovie.Melongmovie` |
 | 12 | Meownime | `https://meownime.moe` | anime | `lk21.extractors.meownime.Meownime` |
-| 13 | Nekopoi | `http://nekopoi.care` | hentai, JAV | `lk21.extractors.nekopoi.Nekopoi` |
-| 14 | Nontonanimeid | `https://nontonanimeid.com` | None | `lk21.extractors.nontonanimeid.Nontonanimeid` |
-| 15 | Oploverz | `https://65.108.132.145` | anime | `lk21.extractors.oploverz.Oploverz` |
-| 16 | Otakudesu | `https://otakudesu.tube` | anime | `lk21.extractors.otakudesu.Otakudesu` |
-| 17 | Riie | `https://riie.jp` | anime | `lk21.extractors.riie.Riie` |
-| 18 | Samehadaku | `https://samehadaku.vip` | anime | `lk21.extractors.samehadaku.Samehadaku` |
-| 19 | Wibudesu | `https://wibudesu.com` | anime | `lk21.extractors.wibudesu.Wibudesu` |
-| 20 | Zonawibu | `https://asuka.zonawibu.net` | anime | `lk21.extractors.zonawibu.Zonawibu` |
-| 21 | Nekonime | `https://194.233.86.238` | anime | `lk21.extractors.nekonime.Nekonime` |
+| 13 | Nekonime | `https://194.233.86.238` | anime | `lk21.extractors.nekonime.Nekonime` |
+| 14 | Nekopoi | `http://nekopoi.care` | hentai, JAV | `lk21.extractors.nekopoi.Nekopoi` |
+| 15 | Nontonanimeid | `https://nontonanimeid.com` | None | `lk21.extractors.nontonanimeid.Nontonanimeid` |
+| 16 | Oploverz | `https://65.108.132.145` | anime | `lk21.extractors.oploverz.Oploverz` |
+| 17 | Otakudesu | `https://otakudesu.watch` | anime | `lk21.extractors.otakudesu.Otakudesu` |
+| 18 | Riie | `https://riie.jp` | anime | `lk21.extractors.riie.Riie` |
+| 19 | Samehadaku | `https://samehadaku.vip` | anime | `lk21.extractors.samehadaku.Samehadaku` |
+| 20 | Wibudesu | `https://wibudesu.co` | anime | `lk21.extractors.wibudesu.Wibudesu` |
+| 21 | Zonawibu | `https://asuka.zonawibu.net` | anime | `lk21.extractors.zonawibu.Zonawibu` |
 
 # Library
 lk21 juga dapat digunakan sebagai library. Artinya, Anda dapat mengimpornya ke aplikasi Anda sendiri.
