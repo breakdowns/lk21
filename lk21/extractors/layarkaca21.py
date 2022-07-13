@@ -3,7 +3,7 @@ from . import BaseExtractor
 
 class Layarkaca21(BaseExtractor):
     tag = "movie"
-    host = "http://149.56.24.226/"
+    host = "https://lk21.xn--6frz82g/"
 
     def extract_meta(self, id: str) -> dict:
         """
