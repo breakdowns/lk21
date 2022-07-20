@@ -19,12 +19,12 @@ Pernah terpikir untuk menonton film atau anime di website secara gratis tapi sel
 # instalasi
 Menggunakan python package manager
 ```bash
-python -m pip install git+https://github.com/BreakdownsClub/lk21
+python -m pip install git+https://github.com/TheBreakdowns/lk21
 ```
 
 bagaimana jika terdapat versi baru? tidak perlu khawatir `lk21` sudah dilengkapi dengan pemberitahuan yang akan muncul setelah program selesai dijalankan. Kamu bisa langsung memperbaharui menggunakan perintah berikut
 ```bash
-python -m pip install --upgrade git+https://github.com/BreakdownsClub/lk21
+python -m pip install --upgrade git+https://github.com/TheBreakdowns/lk21
 ```
 
 # Cara Penggunaan
