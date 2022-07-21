@@ -114,11 +114,6 @@ class Bypass(BaseExtractor):
         regex: https?://(?:files\.im|racaty\.net|hxfile\.co)/[^>]+
         """
 
-        headers = {
-            'content-type': 'application/x-www-form-urlencoded',
-            'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.152 Safari/537.36',
-        }
-
         data = {
             'op': 'download2',
             'id': self.getPath(url),
@@ -128,12 +123,12 @@ class Bypass(BaseExtractor):
             'method_premium': '',
         }
 
-        response = self.session.post(url, headers=headers, data=data)
+        response = self.scraper.post(url, data=data)
         soup = self.soup(response)
 
-        if (btn := soup.find(class_="btn btn-dow")):
+        if (btn := soup.find("a", {"class": "btn btn-dow"})):
             return btn["href"]
-        if (unique := soup.find(id="uniqueExpirylink")):
+        if (unique := soup.find("a", {"id": "uniqueExpirylink"})):
             return unique["href"]
 
     def bypass_redirect(self, url):
