@@ -1,5 +1,8 @@
 from urllib.parse import urlparse
 from http.cookiejar import LWPCookieJar
+from cloudscraper import create_scraper
+from typing import Union
+
 import requests
 import requests_cache
 import bs4
@@ -26,13 +29,13 @@ class BaseExtractor:
     def __init__(self, logger=None, args=None):
         """
         Induk dari semua 'extractor'
-
         Args:
               logger: logger instance
               args: 'argparse.Namespace'
         """
 
-        self.session = self._build_session()
+        self.session = self._build_session(is_cf=False)
+        self.scraper = self._build_session(is_cf=True)
         self.re = re
         self.logger = logger or logging
         self.args = args
@@ -41,14 +44,15 @@ class BaseExtractor:
 
         self.MetaSet = MetaSet
 
-    def _build_session(self) -> requests.Session:
+    def _build_session(self, is_cf: bool = False) -> Union[requests.Session, create_scraper]:
         """
         Buat session baru
         """
-
-        session = requests.Session()
-        session.headers[
-            "User-Agent"] = "Mozilla/5.0 (Linux; Android 7.0; 5060 Build/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/58.0.3029.83 Mobile Safari/537.36"
+        if is_cf:
+            session = create_scraper(interpreter="nodejs", allow_brotli=False)
+        else:
+            session = requests.Session()
+            session.headers["User-Agent"] = "Mozilla/5.0 (Linux; Android 7.0; 5060 Build/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/58.0.3029.83 Mobile Safari/537.36"
         session.cookies = LWPCookieJar()
         return session
 
@@ -101,7 +105,6 @@ class BaseExtractor:
     def extract_meta(self, id: str) -> dict:
         """
         Ambil semua metadata dari halaman web
-
         Args:
               id: type 'str'
         """
@@ -111,7 +114,6 @@ class BaseExtractor:
     def extract_data(self, id: str) -> dict:
         """
         Ambil semua situs unduhan dari halaman web
-
         Args:
               id: jalur url dimulai setelah host, type 'str'
         """
@@ -160,13 +162,12 @@ class BaseExtractor:
     def soup(self, raw: str) -> bs4.BeautifulSoup:
         """
         Ubah 'requests.Response' atau 'str' menjadi 'bs4.BeautifulSoup'
-
         Args:
               raw: type 'requests.Response' atau 'str'
         """
 
         text = raw.text if hasattr(raw, "text") else raw
-        return bs4.BeautifulSoup(text, "html.parser")
+        return bs4.BeautifulSoup(text, "lxml")
 
     def recaptcha3(self, capcay3: str) -> str:
         """
