@@ -3,6 +3,7 @@ from ..utils import removeprefix
 from . import BaseExtractor
 from urllib.parse import urlparse
 from collections import defaultdict
+from cloudscraper import scraper
 import re
 import inspect
 import math
