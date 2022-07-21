@@ -5,12 +5,12 @@ from distutils.core import setup
 
 packages = ['lk21', 'lk21.extractors', 'lk21.thirdparty']
 package_data = {'': ['*']}
-install_requires = ['questionary', 'bs4',
+install_requires = ['questionary', 'bs4', 'cloudscraper', 'lxml',
                     'requests', 'requests-cache', 'colorama']
 entry_points = {'console_scripts': ['lk21 = lk21.cli:main']}
 
 setup(name='lk21',
-      version='1.5.4',
+      version='1.5.5',
       description='cari anime dan film subtitle Indonesia',
       author='Val',
       author_email='apklover76@gmail.com',
