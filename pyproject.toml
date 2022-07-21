@@ -10,7 +10,7 @@ author-email = "apklover76@gmail.com"
 home-page = "https://github.com/zevtyardt"
 description-file = "README.md"
 classifiers = ["License :: OSI Approved :: MIT License"]
-requires = ["questionary", "bs4", "requests", "requests-cache", "colorama"]
+requires = ["questionary", "bs4", "requests", "cloudscraper", "requests-cache", "colorama"]
 requires-python = ">=3.8"
 
 [tool.flit.scripts]
