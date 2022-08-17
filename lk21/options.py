@@ -8,7 +8,7 @@ import re
 
 def ipPortType(arg_value, pat=re.compile(r"^(?:\d{1,3}\.?){4}:\d+$")):
     if not pat.match(arg_value):
-        raise argparse.ArgumentTypeError("Format proxi tidak valid")
+        raise argparse.ArgumentTypeError("Format proksi tidak valid")
     return arg_value
 
 
