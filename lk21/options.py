@@ -8,7 +8,7 @@ import re
 
 def ipPortType(arg_value, pat=re.compile(r"^(?:\d{1,3}\.?){4}:\d+$")):
     if not pat.match(arg_value):
-        raise argparse.ArgumentTypeError("Invalid proxy format")
+        raise argparse.ArgumentTypeError("Format proxi tidak valid")
     return arg_value
 
 
@@ -24,7 +24,7 @@ def ArgumentParser(**kwargs):
     parser.add_argument("query", metavar="query",
                         nargs="*", help="kueri, judul, kata kunci")
     parser.add_argument("--version", action="store_true",
-                        help="show version and exit")
+                        help="tampilkan versi dan keluar")
     parser.add_argument("-d", "--debug", action="store_true",
                         help=argparse.SUPPRESS)
     parser.add_argument("-p", metavar="page", dest="page",

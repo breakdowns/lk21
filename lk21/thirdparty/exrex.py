@@ -229,7 +229,7 @@ def _gen(d, limit=20, count=False, grouprefs=None):
         elif i[0] == sre_parse.ASSERT_NOT:
             pass
         else:
-            print('[!] cannot handle expression ' + repr(i))
+            print('[!] tidak bisa menangani ekspresi ' + repr(i))
 
     if count:
         if strings == 0 and literal:
@@ -287,7 +287,7 @@ def _randone(d, limit=20, grouprefs=None):
         elif i[0] == sre_parse.ASSERT_NOT:
             pass
         else:
-            print('[!] cannot handle expression "%s"' % str(i))
+            print('[!] tidak bisa menangani ekspresi "%s"' % str(i))
 
     return ret
 
@@ -379,12 +379,12 @@ def sre_to_string(sre_obj, paren=True):
         elif i[0] == sre_parse.ASSERT_NOT:
             pass
         else:
-            print('[!] cannot handle expression "%s"' % str(i))
+            print('[!] tidak bisa menangani ekspresi "%s"' % str(i))
     return ret
 
 
 def simplify(regex_string):
-    """Simplify a regular expression
+    """Menyederhanakan regular expression
 
     :param regex_string: Regular expression
     :type regex_string: str
@@ -409,7 +409,7 @@ def parse(s):
 
 
 def generate(s, limit=20):
-    """Creates a generator that generates all matching strings to a given regular expression
+    """Membuat generator yang menghasilkan string-string yang pas dengan regular expression yang diberikan
 
     :param s: Regular expression
     :type s: str
@@ -421,7 +421,7 @@ def generate(s, limit=20):
 
 
 def count(s, limit=20):
-    """Counts all matching strings to a given regular expression
+    """Menghitung jumlah string yang pas dengan regular expression yang diberikan
 
     :param s: Regular expression
     :type s: str
@@ -434,6 +434,6 @@ def count(s, limit=20):
 
 
 def getone(regex_string, limit=20):
-    """Returns a random matching string to a given regular expression
+    """Mengembalikan string random yang pas dengan regular expression yang diberikan
     """
     return _randone(parse(regex_string), limit)

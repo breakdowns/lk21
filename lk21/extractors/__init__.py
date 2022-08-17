@@ -71,7 +71,7 @@ class BaseExtractor:
 
     def dict_to_list(self, d: dict) -> list:
         """
-        undocumented
+        belum terdokumentasi
         """
 
         prefix = self.re.compile(r"^(?:re\:|{})".format(self.host))
@@ -170,7 +170,7 @@ class BaseExtractor:
     
     def recaptcha3(self, capcay3: str) -> str:
         """
-        For Bypass recaptchav3
+        Untuk Bypass recaptchav3
         """
         url_base = 'https://www.google.com/recaptcha/'
         post_data = "v={}&reason=q&c={}&k={}&co={}"
@@ -191,7 +191,7 @@ class BaseExtractor:
 
     def getPath(self, url: str) -> str:
         """
-        undocumented
+        belum terdokumentasi
         """
 
         return urlparse(url).path.strip("/")
@@ -210,7 +210,7 @@ class BaseExtractor:
 
     def _reformat(self, raw: str, add_counter: bool = True) -> str:
         """
-        Reformat text
+        Memformat ulang text
         """
 
         if not isinstance(raw, str) or re.match(r"^\d+\.", raw):
@@ -225,7 +225,7 @@ class BaseExtractor:
 
     def info(self, *args, **kwargs):
         """
-        undocumented
+        belum terdokumentasi
         """
 
         if self.logger and self.args and self.args.info:
@@ -233,7 +233,7 @@ class BaseExtractor:
 
     def choice(self, choices, msg=None, reset_counter=True, otype="list"):
         """
-        undocumented
+        belum terdokumentasi
         """
 
         try:

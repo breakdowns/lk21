@@ -190,7 +190,7 @@ def main():
     if getattr(extractor, "required_proxy", None) and not args.skip_proxy:
         if not args.proxy:
             parser.error(
-                f"{extractor.__class__.__name__} required arguments --proxy, or skip using the --skip-proxy argument if already using vpn")
+                f"{extractor.__class__.__name__} argumen --proxy dibutuhkan, atau lewati dengan --skip-proxy jika telah menggunakan vpn")
     extractor.run_as_module = args.json or args.json_dump
 
     if not args.all and not extractor.tag and not args.debug:
