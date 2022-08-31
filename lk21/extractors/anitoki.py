@@ -3,7 +3,7 @@ from . import BaseExtractor
 
 class Anitoki(BaseExtractor):
     tag = "anime"
-    host = "https://anitoki.me"
+    host = "https://anitoki.cyou"
 
     def extract_meta(self, id: str) -> dict:
         """
