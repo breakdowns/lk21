@@ -99,13 +99,13 @@ Sangat mudah bukan, untuk membuat user input yang <i>user friendly</i> saya meng
 | 1 | Anibatch | `https://o.anibatch.me/` | anime | `lk21.extractors.anibatch.Anibatch` |
 | 2 | Anikyojin | `https://anikyojin.id` | anime | `lk21.extractors.anikyojin.Anikyojin` |
 | 3 | Animeindo | `https://185.224.82.193` | anime | `lk21.extractors.animeindo.Animeindo` |
-| 4 | Anitoki | `https://anitoki.me` | anime | `lk21.extractors.anitoki.Anitoki` |
+| 4 | Anitoki | `https://anitoki.cyou` | anime | `lk21.extractors.anitoki.Anitoki` |
 | 5 | Bbcsjav | `https://bbcsjav.com` | JAV | `lk21.extractors.bbcsjav.Bbcsjav` |
 | 6 | Dramaindo | `https://163.172.111.222` | anime, movie | `lk21.extractors.dramaindo.Dramaindo` |
 | 7 | Drivenime | `https://drivenime.com` | anime | `lk21.extractors.drivenime.Drivenime` |
 | 8 | KDramaindo | `https://kdramaindo.live` | movie | `lk21.extractors.kdramaindo.KDramaindo` |
 | 9 | Kusonime | `https://kusonime.com` | anime | `lk21.extractors.kusonime.Kusonime` |
-| 10 | Layarkaca21 | `https://lk21.xn--6frz82g/` | movie | `lk21.extractors.layarkaca21.Layarkaca21` |
+| 10 | Layarkaca21 | `https://lk21.homes` | movie | `lk21.extractors.layarkaca21.Layarkaca21` |
 | 11 | Melongmovie | `https://melongmovie.net` | movie | `lk21.extractors.melongmovie.Melongmovie` |
 | 12 | Meownime | `https://meownime.moe` | anime | `lk21.extractors.meownime.Meownime` |
 | 13 | Nekonime | `https://194.233.86.238` | anime | `lk21.extractors.nekonime.Nekonime` |
