@@ -3,7 +3,7 @@ from . import BaseExtractor
 
 class Samehadaku(BaseExtractor):
     tag = "anime"
-    host = "https://samehadaku.cam"
+    host = "https://samehadaku.bio"
 
     def extract_meta(self, id: str) -> dict:
         """

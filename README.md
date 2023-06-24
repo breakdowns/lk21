@@ -19,12 +19,12 @@ Pernah terpikir untuk menonton film atau anime di website secara gratis tapi sel
 # instalasi
 Menggunakan python package manager
 ```bash
-python -m pip install git+https://github.com/TheBreakdowns/lk21
+python -m pip install git+https://github.com/breakdowns/lk21
 ```
 
 bagaimana jika terdapat versi baru? tidak perlu khawatir `lk21` sudah dilengkapi dengan pemberitahuan yang akan muncul setelah program selesai dijalankan. Kamu bisa langsung memperbaharui menggunakan perintah berikut
 ```bash
-python -m pip install --upgrade git+https://github.com/TheBreakdowns/lk21
+python -m pip install --upgrade git+https://github.com/breakdowns/lk21
 ```
 
 # Cara Penggunaan
@@ -96,25 +96,25 @@ Sangat mudah bukan, untuk membuat user input yang <i>user friendly</i> saya meng
 # Daftar Website
 | no | name | site | tag | import |
 |:---:|:---:|:---:|:---:|:---:|
-| 1 | Anibatch | `https://o.anibatch.me/` | anime | `lk21.extractors.anibatch.Anibatch` |
+| 1 | Anibatch | `https://anibatch.anibatch.moe/` | anime | `lk21.extractors.anibatch.Anibatch` |
 | 2 | Anikyojin | `https://anikyojin.id` | anime | `lk21.extractors.anikyojin.Anikyojin` |
 | 3 | Animeindo | `https://185.224.82.193` | anime | `lk21.extractors.animeindo.Animeindo` |
 | 4 | Anitoki | `https://anitoki.cyou` | anime | `lk21.extractors.anitoki.Anitoki` |
 | 5 | Bbcsjav | `https://bbcsjav.com` | JAV | `lk21.extractors.bbcsjav.Bbcsjav` |
-| 6 | Dramaindo | `https://163.172.111.222` | anime, movie | `lk21.extractors.dramaindo.Dramaindo` |
+| 6 | Dramaindo | `https://id.indodrama.net` | anime, movie | `lk21.extractors.dramaindo.Dramaindo` |
 | 7 | Drivenime | `https://drivenime.com` | anime | `lk21.extractors.drivenime.Drivenime` |
 | 8 | KDramaindo | `https://kdramaindo.live` | movie | `lk21.extractors.kdramaindo.KDramaindo` |
 | 9 | Kusonime | `https://kusonime.com` | anime | `lk21.extractors.kusonime.Kusonime` |
-| 10 | Layarkaca21 | `https://lk21.homes` | movie | `lk21.extractors.layarkaca21.Layarkaca21` |
-| 11 | Melongmovie | `https://melongmovie.net` | movie | `lk21.extractors.melongmovie.Melongmovie` |
-| 12 | Meownime | `https://meownime.moe` | anime | `lk21.extractors.meownime.Meownime` |
-| 13 | Nekonime | `https://194.233.86.238` | anime | `lk21.extractors.nekonime.Nekonime` |
+| 10 | Layarkaca21 | `https://watch.lk21official.shop` | movie | `lk21.extractors.layarkaca21.Layarkaca21` |
+| 11 | Melongmovie | `https://melongmovie.site` | movie | `lk21.extractors.melongmovie.Melongmovie` |
+| 12 | Meownime | `https://meownime.lol` | anime | `lk21.extractors.meownime.Meownime` |
+| 13 | Nekonime | `https://nekonime.top` | anime | `lk21.extractors.nekonime.Nekonime` |
 | 14 | Nekopoi | `http://nekopoi.care` | hentai, JAV | `lk21.extractors.nekopoi.Nekopoi` |
 | 15 | Nontonanimeid | `https://nontonanimeid.com` | None | `lk21.extractors.nontonanimeid.Nontonanimeid` |
-| 16 | Oploverz | `https://65.108.132.145` | anime | `lk21.extractors.oploverz.Oploverz` |
-| 17 | Otakudesu | `https://otakudesu.watch` | anime | `lk21.extractors.otakudesu.Otakudesu` |
-| 18 | Riie | `https://riie.jp` | anime | `lk21.extractors.riie.Riie` |
-| 19 | Samehadaku | `https://samehadaku.vip` | anime | `lk21.extractors.samehadaku.Samehadaku` |
+| 16 | Oploverz | `https://oploverz.care` | anime | `lk21.extractors.oploverz.Oploverz` |
+| 17 | Otakudesu | `https://otakudesu.lol` | anime | `lk21.extractors.otakudesu.Otakudesu` |
+| 18 | Riie | `https://riie.one` | anime | `lk21.extractors.riie.Riie` |
+| 19 | Samehadaku | `https://samehadaku.bio` | anime | `lk21.extractors.samehadaku.Samehadaku` |
 | 20 | Wibudesu | `https://wibudesu.co` | anime | `lk21.extractors.wibudesu.Wibudesu` |
 | 21 | Zonawibu | `https://asuka.zonawibu.net` | anime | `lk21.extractors.zonawibu.Zonawibu` |
 

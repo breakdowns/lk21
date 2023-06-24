@@ -3,7 +3,7 @@ from . import BaseExtractor
 
 class Melongmovie(BaseExtractor):
     tag = "movie"
-    host = "http://146.190.193.128"
+    host = "https://melongmovie.site"
 
     def extract_meta(self, id: str) -> dict:
         """
