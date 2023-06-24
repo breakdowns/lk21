@@ -26,10 +26,7 @@ class Riie(BaseExtractor):
         def setItem(text, alias=None):
             td = soup.find("td", text=text)
             v = td.findNext("td")
-            if v.a:
-                v = [a.text for a in v.findAll("a")]
-            else:
-                v = v.text
+            v = [a.text for a in v.findAll("a")] if v.a else v.text
             meta.add(text, v)
 
         setItem("Judul Alternatif")

@@ -63,9 +63,7 @@ class KDramaindo(BaseExtractor):
                 for ul in content.findAll("ul"):
                     r = {}
                     for li in ul.findAll("li"):
-                        urls = {}
-                        for a in li.findAll("a"):
-                            urls[a.text] = a["href"]
+                        urls = {a.text: a["href"] for a in li.findAll("a")}
                         r[li.strong.text] = urls
                     result[ul.findPrevious("h3").text] = r
         return result

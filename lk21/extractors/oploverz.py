@@ -39,9 +39,7 @@ class Oploverz(BaseExtractor):
             d = {}
             for p in ddl.findAll("p"):
                 if (t1 := p.find(class_="sorattl")):
-                    d1 = {}
-                    for a in p.findAll("a"):
-                        d1[a.text] = a["href"]
+                    d1 = {a.text: a["href"] for a in p.findAll("a")}
                     d[t1.text] = d1
             result[ttl] = d
         return result
@@ -69,9 +67,11 @@ class Oploverz(BaseExtractor):
                 "title": a.text,
                 "id": self.getPath(a["href"]),
             })
-        for bs in soup.findAll("article", class_="bs"):
-            result.append({
+        result.extend(
+            {
                 "id": self.getPath(bs.a["href"]),
-                "title": bs.find(itemprop="headline").text
-            })
+                "title": bs.find(itemprop="headline").text,
+            }
+            for bs in soup.findAll("article", class_="bs")
+        )
         return result

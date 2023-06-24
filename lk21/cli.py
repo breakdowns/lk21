@@ -215,7 +215,7 @@ def main():
                 sys.exit("Tidak ditemukan")
 
             if len(cache[page]) == 1:
-                response = f"1. " + cache[page][0]["title"]
+                response = "1. " + cache[page][0]["title"]
             else:
                 response = extractor.choice([
                     i['title'] for i in cache[page]] + [

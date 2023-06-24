@@ -31,9 +31,8 @@ class Nekopoi(BaseExtractor):
         raw = self.session.get(f"{self.host}/{id}")
         soup = self.soup(raw)
 
-        result = {}
         self._write(soup)
-        return result
+        return {}
 
     def search(self, query: str, page: int = 1) -> list:
         """

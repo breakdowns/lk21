@@ -20,25 +20,21 @@ class Otakudesu(BaseExtractor):
         soup = self.soup(raw)
 
         if (eps := soup.findAll(class_="episodelist")[1:]):
-            ch = {}
-            for li in eps[0].findAll("li"):
-                ch[li.a.text] = li.a["href"]
-            return ch
-        else:
-            dls = {}
-            for dl in soup.findAll("div", class_="download"):
-                title = [h4.text for h4 in dl.findAll("h4")]
-                for n, ul in enumerate(dl.findAll("ul")):
-                    if len(title) == 1:
-                        n = 0
-                    n = title[n]
-                    if not dls.get(n):
-                        dls[n] = {}
-                    for li in ul.findAll("li"):
-                        dls[n][f"{li.strong.text}/{li.i.text}"] = {
-                            a.text: a["href"] for a in li.findAll("a")
-                        }
-            return dls
+            return {li.a.text: li.a["href"] for li in eps[0].findAll("li")}
+        dls = {}
+        for dl in soup.findAll("div", class_="download"):
+            title = [h4.text for h4 in dl.findAll("h4")]
+            for n, ul in enumerate(dl.findAll("ul")):
+                if len(title) == 1:
+                    n = 0
+                n = title[n]
+                if not dls.get(n):
+                    dls[n] = {}
+                for li in ul.findAll("li"):
+                    dls[n][f"{li.strong.text}/{li.i.text}"] = {
+                        a.text: a["href"] for a in li.findAll("a")
+                    }
+        return dls
 
     def search(self, query: str, page: int = 1) -> list:
         """
@@ -55,9 +51,8 @@ class Otakudesu(BaseExtractor):
 
         result = []
         if (ul := soup.find("ul", class_="chivsrc")):
-            for li in ul.findAll("li"):
-                result.append({
-                    "title": li.a.text,
-                    "id": self.getPath(li.a["title"])
-                })
+            result.extend(
+                {"title": li.a.text, "id": self.getPath(li.a["title"])}
+                for li in ul.findAll("li")
+            )
         return result

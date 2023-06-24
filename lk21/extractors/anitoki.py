@@ -42,9 +42,7 @@ class Anitoki(BaseExtractor):
                 if not result.get(smokettl):
                     result[smokettl] = {}
 
-                r = {}
-                for a in smokeurl.findAll("a"):
-                    r[a.text] = a["href"]
+                r = {a.text: a["href"] for a in smokeurl.findAll("a")}
                 if smokeurl.strong:
                     result[smokettl][smokeurl.strong.text] = r
         return result

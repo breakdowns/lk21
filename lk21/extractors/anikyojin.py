@@ -60,9 +60,7 @@ class Anikyojin(BaseExtractor):
         for dc in soup.findAll(class_="downloadcloud"):
             reso = {}
             for li in dc.findAll("li"):
-                d = {}
-                for a in li.findAll("a"):
-                    d[a.text] = a["href"]
+                d = {a.text: a["href"] for a in li.findAll("a")}
                 reso[li.strong.text] = d
             result[dc.h2.text] = reso
         return result

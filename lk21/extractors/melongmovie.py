@@ -58,9 +58,7 @@ class Melongmovie(BaseExtractor):
             r = {}
             for p in content.findAll("p"):
                 if p.a:
-                    y = {}
-                    for a in p.findAll("a"):
-                        y[a.text] = a["href"]
+                    y = {a.text: a["href"] for a in p.findAll("a")}
                     title = self.re.search(r"\s*([^=]+)", p.text)
                     r[title.group(1)] = y
             if r:
@@ -75,9 +73,7 @@ class Melongmovie(BaseExtractor):
                 if sub.count("/") > 2:
                     continue
 
-                y = {}
-                for a in li.findAll("a"):
-                    y[a.text] = a["href"]
+                y = {a.text: a["href"] for a in li.findAll("a")}
                 r[sub] = y
             result[ep.text] = r
 
@@ -85,10 +81,7 @@ class Melongmovie(BaseExtractor):
         if (ref := soup.find("strong", text=pattern)):
             for li in ref.findAllNext("li"):
                 sub = "/".join(strong.text for strong in li.findAll("strong"))
-                r = {}
-                for a in li.findAll("a"):
-                    r[a.text] = a["href"]
-
+                r = {a.text: a["href"] for a in li.findAll("a")}
                 title = li.findPrevious(
                     "strong", text=pattern).text.strip(": \n")
                 if not result.get(title):

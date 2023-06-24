@@ -14,13 +14,10 @@ class Nekonime(BaseExtractor):
         raw = self.session.get(f"{self.host}/page/{page}", params={
             "s": query})
         soup = self.soup(raw)
-        result = []
-        for page in soup.find_all("h3", class_="article-title"):
-            result.append({
-                "title": page.a.get_text(),
-                "id": self.getPath(page.a['href'])
-            })
-        return result
+        return [
+            {"title": page.a.get_text(), "id": self.getPath(page.a['href'])}
+            for page in soup.find_all("h3", class_="article-title")
+        ]
     
     def extract_data(self, id: str) -> dict:
         """
@@ -39,20 +36,16 @@ class Nekonime(BaseExtractor):
                 result[nth] = {}
                 for urls in boy.findAll(class_="soraurl"):
                     res = urls.find("strong").text
-                    links = {}
-                    for a in urls.find_all("a"):
-                        links[a.get_text()] = a['href']
+                    links = {a.get_text(): a['href'] for a in urls.find_all("a")}
                     result[nth][res] = links
-                
+
         if (para := soup.find_all(class_="mctnx")):
             for boy in para:
                 nth = boy.find("div", class_="sorattlx").text
                 result[nth] = {}
                 for urls in boy.findAll(class_="soraurlx"):
                     res = urls.find("strong").text
-                    links = {}
-                    for a in urls.find_all("a"):
-                        links[a.get_text()] = a['href']
+                    links = {a.get_text(): a['href'] for a in urls.find_all("a")}
                     result[nth][res] = links
-                
+
         return result

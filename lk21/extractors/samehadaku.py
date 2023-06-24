@@ -37,10 +37,7 @@ class Samehadaku(BaseExtractor):
             span.b.decompose()
             k = alias.get(k, k)
 
-            if span.a:
-                v = [a.text for a in span.findAll("a")]
-            else:
-                v = span.text
+            v = [a.text for a in span.findAll("a")] if span.a else span.text
             meta.add(k, v, split=k not in ["Rilis"])
 
         return meta
@@ -73,9 +70,7 @@ class Samehadaku(BaseExtractor):
         for dl in soup.findAll(class_="download-eps"):
             d = {}
             for li in dl.findAll("li"):
-                item = {}
-                for a in li.findAll("a"):
-                    item[a.text] = a["href"]
+                item = {a.text: a["href"] for a in li.findAll("a")}
                 d[li.strong.text] = item
             result[dl.p.text] = d
         return result

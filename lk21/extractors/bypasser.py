@@ -70,9 +70,11 @@ class Bypass(BaseExtractor):
 
         raw = self.session.get(url)
         if (fileId := re.search(r"(?i)showFileInformation\((\d+)\)", raw.text)):
-            return self.bypass_redirect('https://letsupload.io/account/direct_download/' + fileId.group(1))
+            return self.bypass_redirect(
+                f'https://letsupload.io/account/direct_download/{fileId[1]}'
+            )
         if (nextUrl := re.search(r"window.location += ['\"]([^\"']+)", raw.text)):
-            return nextUrl.group(1)
+            return nextUrl[1]
 
     def bypass_streamtape(self, url):
         """
@@ -82,7 +84,7 @@ class Bypass(BaseExtractor):
         raw = self.session.get(url)
 
         if (videolink := re.findall(r"document.*((?=id\=)[^\"']+)", raw.text)):
-            nexturl = "https://streamtape.com/get_video?" + videolink[-1]
+            nexturl = f"https://streamtape.com/get_video?{videolink[-1]}"
             self.report_bypass(nexturl)
             if (redirect := self.bypass_redirect(nexturl)):
                 return redirect
@@ -146,7 +148,7 @@ class Bypass(BaseExtractor):
 
         raw = self.session.get(url)
         if (match := re.search(r"innerHTML\s*=\s*'([^']+)", raw.text)):
-            raw = match.group(1)
+            raw = match[1]
             soup = self.soup(raw)
 
             d = {}
@@ -190,8 +192,7 @@ class Bypass(BaseExtractor):
         if (dlbutton := re.search(r'href = "([^"]+)" \+ \(([^)]+)\) \+ "([^"]+)', raw.text)):
             folder, math_chall, filename = dlbutton.groups()
             math_chall = eval(math_chall)
-            return "%s%s%s%s" % (
-                re.search(r"https?://[^/]+", raw.url).group(0), folder, math_chall, filename)
+            return f'{re.search("https?://[^/]+", raw.url)[0]}{folder}{math_chall}{filename}'
 
         soup = self.soup(raw)
         if (script := soup.find("script", text=re.compile("(?si)\s*var a = \d+;"))):
@@ -206,12 +207,9 @@ class Bypass(BaseExtractor):
                 else:
                     a = math.floor(int(a) // 3)
                 divider = int(re.findall(f"(\d+)%b", sc)[0])
-                return re.search(r"(^https://www\d+.zippyshare.com)", raw.url).group(1) + \
-                    "".join([
-                        file[0],
-                        str(a + (divider % int(b))),
-                        file[1]
-                    ])
+                return re.search(r"(^https://www\d+.zippyshare.com)", raw.url)[
+                    1
+                ] + "".join([file[0], str(a + (divider % int(b))), file[1]])
 
     def bypass_fembed(self, url):
         """
@@ -226,7 +224,7 @@ class Bypass(BaseExtractor):
         if api is not None:
             result = {}
             raw = self.session.post(
-                "{0.scheme}://{0.netloc}".format(urlparse(url)) + api.group(1),
+                "{0.scheme}://{0.netloc}".format(urlparse(url)) + api[1],
                 data={"r": url, "d": "{0.netloc}".format(urlparse(url))},
                 headers={
                     "Referer": url,

@@ -56,9 +56,7 @@ class Wibudesu(BaseExtractor):
         for p in lexot.findAll("p")[1:]:
             if (links := p.findAll("a")):
                 title = p.strong.text
-                d = {}
-                for a in links:
-                    d[a.text] = a["href"]
+                d = {a.text: a["href"] for a in links}
                 result[title] = d
         return result
 

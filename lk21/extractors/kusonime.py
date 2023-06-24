@@ -68,9 +68,7 @@ class Kusonime(BaseExtractor):
             d[title] = {}
             for smokeurl in smokeddl.findAll(class_="smokeurl"):
                 res = smokeurl.strong.text
-                links = {}
-                for a in smokeurl.findAll("a"):
-                    links[a.text] = a["href"]
+                links = {a.text: a["href"] for a in smokeurl.findAll("a")}
                 d[title][res] = links
         return d
 
@@ -86,8 +84,7 @@ class Kusonime(BaseExtractor):
               list: daftar item dalam bentuk 'dict'
         """
 
-        raw = self.session.get(self.host + f"/page/{page}/", params={
-            "s": query})
+        raw = self.session.get(f"{self.host}/page/{page}/", params={"s": query})
         soup = self.soup(raw)
 
         result = []

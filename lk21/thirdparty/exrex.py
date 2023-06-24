@@ -59,7 +59,7 @@ def _build_reverse_categories():
 
         for vv in value[1]:
             if value[0] == sre_parse.IN and vv[0] == sre_parse.CATEGORY:
-                reverse.update({vv[1]: key})
+                reverse[vv[1]] = key
 
     return reverse
 
@@ -132,15 +132,12 @@ def prods(orig, ran, items, limit, grouprefs):
                 for _ in range(r):
                     ret = ggen(
                         ret, _gen, items, limit=limit, count=False, grouprefs=grouprefs)
-                for i in ret:
-                    yield i
+                yield from ret
 
 
 def ggen(g1, f, *args, **kwargs):
-    groupref = None
     grouprefs = kwargs.get('grouprefs', {})
-    if 'groupref' in kwargs.keys():
-        groupref = kwargs.pop('groupref')
+    groupref = kwargs.pop('groupref') if 'groupref' in kwargs else None
     for a in g1:
         g2 = f(*args, **kwargs)
         if isinstance(g2, GeneratorType):
@@ -184,19 +181,13 @@ def _gen(d, limit=20, count=False, grouprefs=None):
             if count:
                 strings = (strings or 1) * len(subs)
             ret = comb(ret, subs)
-        elif i[0] == sre_parse.MAX_REPEAT or i[0] == sre_parse.MIN_REPEAT:
+        elif i[0] in [sre_parse.MAX_REPEAT, sre_parse.MIN_REPEAT]:
             items = list(i[1][2])
-            if i[1][1] + 1 - i[1][0] >= limit:
-                r1 = i[1][0]
-                r2 = i[1][0] + limit
-            else:
-                r1 = i[1][0]
-                r2 = i[1][1] + 1
+            r1 = i[1][0]
+            r2 = i[1][0] + limit if i[1][1] + 1 - i[1][0] >= limit else i[1][1] + 1
             ran = range(r1, r2)
             if count:
-                branch_count = 0
-                for p in ran:
-                    branch_count += pow(_gen(items, limit, True, grouprefs), p)
+                branch_count = sum(pow(_gen(items, limit, True, grouprefs), p) for p in ran)
                 strings = (strings or 1) * branch_count
 
             ret = prods(ret, ran, items, limit, grouprefs)
@@ -205,7 +196,7 @@ def _gen(d, limit=20, count=False, grouprefs=None):
                 for x in i[1][1]:
                     strings += _gen(x, limit, True, grouprefs) or 1
             ret = concit(ret, i[1][1], limit, grouprefs)
-        elif i[0] == sre_parse.SUBPATTERN or i[0] == sre_parse.ASSERT:
+        elif i[0] in [sre_parse.SUBPATTERN, sre_parse.ASSERT]:
             subexpr = i[1][1]
             if IS_PY36_OR_GREATER and i[0] == sre_parse.SUBPATTERN:
                 subexpr = i[1][3]
@@ -214,7 +205,6 @@ def _gen(d, limit=20, count=False, grouprefs=None):
                     strings or 1) * (sum(ggen([0], _gen, subexpr, limit=limit, count=True, grouprefs=grouprefs)) or 1)
             ret = ggen(ret, _gen, subexpr, limit=limit, count=False,
                        grouprefs=grouprefs, groupref=i[1][0])
-        # ignore ^ and $
         elif i[0] == sre_parse.AT:
             continue
         elif i[0] == sre_parse.NOT_LITERAL:
@@ -226,17 +216,12 @@ def _gen(d, limit=20, count=False, grouprefs=None):
             ret = comb(ret, subs)
         elif i[0] == sre_parse.GROUPREF:
             ret = dappend(ret, grouprefs, i[1])
-        elif i[0] == sre_parse.ASSERT_NOT:
-            pass
-        else:
-            print('[!] tidak bisa menangani ekspresi ' + repr(i))
+        elif i[0] != sre_parse.ASSERT_NOT:
+            print(f'[!] tidak bisa menangani ekspresi {repr(i)}')
 
     if count:
         if strings == 0 and literal:
-            inc = True
-            for i in d:
-                if i[0] not in (sre_parse.AT, sre_parse.LITERAL):
-                    inc = False
+            inc = all(i[0] in (sre_parse.AT, sre_parse.LITERAL) for i in d)
             if inc:
                 strings = 1
         return strings
@@ -258,7 +243,7 @@ def _randone(d, limit=20, grouprefs=None):
             ret += choice(CATEGORIES.get(i[1], ['']))
         elif i[0] == sre_parse.ANY:
             ret += choice(CATEGORIES['category_any'])
-        elif i[0] == sre_parse.MAX_REPEAT or i[0] == sre_parse.MIN_REPEAT:
+        elif i[0] in [sre_parse.MAX_REPEAT, sre_parse.MIN_REPEAT]:
             if i[1][1] + 1 - i[1][0] >= limit:
                 min, max = i[1][0], i[1][0] + limit - 1
             else:
@@ -267,7 +252,7 @@ def _randone(d, limit=20, grouprefs=None):
                 ret += _randone(list(i[1][2]), limit, grouprefs)
         elif i[0] == sre_parse.BRANCH:
             ret += _randone(choice(i[1][1]), limit, grouprefs)
-        elif i[0] == sre_parse.SUBPATTERN or i[0] == sre_parse.ASSERT:
+        elif i[0] in [sre_parse.SUBPATTERN, sre_parse.ASSERT]:
             subexpr = i[1][1]
             if IS_PY36_OR_GREATER and i[0] == sre_parse.SUBPATTERN:
                 subexpr = i[1][3]
@@ -284,10 +269,8 @@ def _randone(d, limit=20, grouprefs=None):
             ret += choice(c)
         elif i[0] == sre_parse.GROUPREF:
             ret += grouprefs[i[1]]
-        elif i[0] == sre_parse.ASSERT_NOT:
-            pass
-        else:
-            print('[!] tidak bisa menangani ekspresi "%s"' % str(i))
+        elif i[0] != sre_parse.ASSERT_NOT:
+            print(f'[!] tidak bisa menangani ekspresi "{str(i)}"')
 
     return ret
 
@@ -301,6 +284,8 @@ def sre_to_string(sre_obj, paren=True):
     """
     ret = u''
     for i in sre_obj:
+        if i[0] == sre_parse.NEGATE:
+            continue
         if i[0] == sre_parse.IN:
             prefix = ''
             if len(i[1]) and i[1][0][0] == sre_parse.NEGATE:
@@ -325,13 +310,10 @@ def sre_to_string(sre_obj, paren=True):
             else:
                 prefix = '?:'
             branch = '|'.join(parts)
-            if paren:
-                ret += '({0}{1})'.format(prefix, branch)
-            else:
-                ret += '{0}'.format(branch)
+            ret += '({0}{1})'.format(prefix, branch) if paren else '{0}'.format(branch)
         elif i[0] == sre_parse.SUBPATTERN:
             subexpr = i[1][1]
-            if IS_PY36_OR_GREATER and i[0] == sre_parse.SUBPATTERN:
+            if IS_PY36_OR_GREATER:
                 subexpr = i[1][3]
             if i[1][0]:
                 ret += '({0})'.format(sre_to_string(subexpr, paren=False))
@@ -342,13 +324,12 @@ def sre_to_string(sre_obj, paren=True):
         elif i[0] == sre_parse.MAX_REPEAT:
             if i[1][0] == i[1][1]:
                 range_str = '{{{0}}}'.format(i[1][0])
+            elif i[1][0] == 0 and i[1][1] - i[1][0] == sre_parse.MAXREPEAT:
+                range_str = '*'
+            elif i[1][0] == 1 and i[1][1] - i[1][0] == sre_parse.MAXREPEAT - 1:
+                range_str = '+'
             else:
-                if i[1][0] == 0 and i[1][1] - i[1][0] == sre_parse.MAXREPEAT:
-                    range_str = '*'
-                elif i[1][0] == 1 and i[1][1] - i[1][0] == sre_parse.MAXREPEAT - 1:
-                    range_str = '+'
-                else:
-                    range_str = '{{{0},{1}}}'.format(i[1][0], i[1][1])
+                range_str = '{{{0},{1}}}'.format(i[1][0], i[1][1])
             ret += sre_to_string(i[1][2], paren=paren) + range_str
         elif i[0] == sre_parse.MIN_REPEAT:
             if i[1][0] == 0 and i[1][1] == sre_parse.MAXREPEAT:
@@ -367,8 +348,6 @@ def sre_to_string(sre_obj, paren=True):
                 ret += '^'
             elif i[1] == sre_parse.AT_END:
                 ret += '$'
-        elif i[0] == sre_parse.NEGATE:
-            pass
         elif i[0] == sre_parse.RANGE:
             ret += '{0}-{1}'.format(unichr(i[1][0]), unichr(i[1][1]))
         elif i[0] == sre_parse.ASSERT:
@@ -376,10 +355,8 @@ def sre_to_string(sre_obj, paren=True):
                 ret += '(?={0})'.format(sre_to_string(i[1][1], paren=False))
             else:
                 ret += '{0}'.format(sre_to_string(i[1][1], paren=paren))
-        elif i[0] == sre_parse.ASSERT_NOT:
-            pass
-        else:
-            print('[!] tidak bisa menangani ekspresi "%s"' % str(i))
+        elif i[0] != sre_parse.ASSERT_NOT:
+            print(f'[!] tidak bisa menangani ekspresi "{str(i)}"')
     return ret
 
 
