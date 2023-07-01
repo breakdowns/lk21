@@ -22,7 +22,11 @@ try:
     from future_builtins import map, range
 except:
     pass
-from re import sre_parse, U
+try:
+    from re import _parser as sre_parse
+except ImportError: # Python < 3.11
+    from re import sre_parse
+from re import U
 from itertools import tee
 from random import choice, randint
 from types import GeneratorType
