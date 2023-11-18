@@ -1,7 +1,7 @@
 from . import BaseExtractor
 
 class Nekonime(BaseExtractor):
-    host = "https://nekonime.top"
+    host = "https://nekonime.su"
     tag = "anime"
     
     def search(self, query: str, page: int = 1) -> list:

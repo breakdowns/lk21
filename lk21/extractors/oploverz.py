@@ -2,7 +2,7 @@ from . import BaseExtractor
 
 
 class Oploverz(BaseExtractor):
-    host = "https://oploverz.team"
+    host = "https://oploverz.red"
     tag = "anime"
     required_proxy = True
 

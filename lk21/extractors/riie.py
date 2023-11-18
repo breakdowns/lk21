@@ -3,7 +3,7 @@ from . import BaseExtractor
 
 class Riie(BaseExtractor):
     tag = "anime"
-    host = "https://riie.one"
+    host = "https://riie.jp"
 
     def extract_meta(self, id: str) -> dict:
         """

@@ -105,16 +105,16 @@ Sangat mudah bukan, untuk membuat user input yang <i>user friendly</i> saya meng
 | 7 | Drivenime | `https://drivenime.com` | anime | `lk21.extractors.drivenime.Drivenime` |
 | 8 | KDramaindo | `https://kdramaindo.live` | movie | `lk21.extractors.kdramaindo.KDramaindo` |
 | 9 | Kusonime | `https://kusonime.com` | anime | `lk21.extractors.kusonime.Kusonime` |
-| 10 | Layarkaca21 | `https://tv2.lk21official.pro` | movie | `lk21.extractors.layarkaca21.Layarkaca21` |
+| 10 | Layarkaca21 | `https://tv4.lk21official.wiki` | movie | `lk21.extractors.layarkaca21.Layarkaca21` |
 | 11 | Melongmovie | `https://melongmovie.site` | movie | `lk21.extractors.melongmovie.Melongmovie` |
 | 12 | Meownime | `https://meownime.lol` | anime | `lk21.extractors.meownime.Meownime` |
-| 13 | Nekonime | `https://nekonime.top` | anime | `lk21.extractors.nekonime.Nekonime` |
+| 13 | Nekonime | `https://nekonime.su` | anime | `lk21.extractors.nekonime.Nekonime` |
 | 14 | Nekopoi | `http://nekopoi.care` | hentai, JAV | `lk21.extractors.nekopoi.Nekopoi` |
 | 15 | Nontonanimeid | `https://nontonanimeid.com` | None | `lk21.extractors.nontonanimeid.Nontonanimeid` |
-| 16 | Oploverz | `https://oploverz.team` | anime | `lk21.extractors.oploverz.Oploverz` |
-| 17 | Otakudesu | `https://otakudesu.lol` | anime | `lk21.extractors.otakudesu.Otakudesu` |
-| 18 | Riie | `https://riie.one` | anime | `lk21.extractors.riie.Riie` |
-| 19 | Samehadaku | `https://samehadaku.bar` | anime | `lk21.extractors.samehadaku.Samehadaku` |
+| 16 | Oploverz | `https://oploverz.red` | anime | `lk21.extractors.oploverz.Oploverz` |
+| 17 | Otakudesu | `https://otakudesu.cam` | anime | `lk21.extractors.otakudesu.Otakudesu` |
+| 18 | Riie | `https://riie.jp` | anime | `lk21.extractors.riie.Riie` |
+| 19 | Samehadaku | `https://samehadaku.mom` | anime | `lk21.extractors.samehadaku.Samehadaku` |
 | 20 | Wibudesu | `https://wibudesu.co` | anime | `lk21.extractors.wibudesu.Wibudesu` |
 | 21 | Zonawibu | `https://asuka.zonawibu.net` | anime | `lk21.extractors.zonawibu.Zonawibu` |
 
